@@ -1,21 +1,48 @@
 import './App.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import video from './food.mp4';
 
 
 function App() {
   const MY_ID = "f8d5c297";
   const MY_KEY = "261b2e6790ec7580369fa3062441ca66";
 
-  useEffect( async () => {
-    const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=f8d5c297&app_key=261b2e6790ec7580369fa3062441ca66`);
-    console.log(response);
-  })
+  const [mySearch, setMySearch] = useState('');
+
+  useEffect(() => {
+    async function fetchData() {
+    const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=${MY_ID}&app_key=${MY_KEY}`);
+    const data = await response.json();
+    console.log(data.hits);
+  }
+    fetchData();
+}, []);
+
+  const myRecipeSearch = (e) => {
+    setMySearch(e.target.value)
+  }
 
 
 
   return (
     <div className="App">
-      <p>RECIPES</p>
+      <div className="container">
+        <video autoPlay muted loop>
+          <source src={video} type="video/mp4" />
+        </video>
+        <h1>Find a Recipe</h1>
+      </div>
+      <div className="container">
+        <form>
+          <input className='search' placeholder='Search ...' onChange={myRecipeSearch} value={mySearch}>
+
+          </input>
+        </form>
+        <button>
+          <img src="https://img.icons8.com/emoji/48/cooking-pot-emoji.png" className='icons' />
+        </button>
+    
+      </div>
     </div>
   );
 }
