@@ -39,7 +39,7 @@ function App() {
           </input>
         </form>
         <button>
-          <img src="https://img.icons8.com/emoji/48/cooking-pot-emoji.png" className='icons' />
+          <img src="https://img.icons8.com/emoji/48/cooking-pot-emoji.png" className='icons' alt="pot"/>
         </button>
     
       </div>
