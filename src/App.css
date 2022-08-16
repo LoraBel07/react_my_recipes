@@ -20,7 +20,6 @@ video {
 .search {
   width: 100%;
   padding: 12px 24px;
-  background-color: transparent;
   font-size: 14px;
   line-height: 18px;
   color: #575756;
@@ -29,9 +28,43 @@ video {
   box-shadow: inset 0px 0px 0px 4px #ddd6e8;
 
 }
+.tasty {
+  box-shadow: inset 0px 0px 2px 6px #ddd6e8;
+  /* width: 30%; */
+  padding: 12px 24px;
+  background-color: rgb(236, 232, 232);
+  border: rgb(79, 78, 78) solid 2px;
+}
 button {
   margin-left: 60px;
   margin-bottom: 10px;
   margin-top: -5px;
 }
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+li {
+  display: block;
+  padding: .4em .4em .4em .8em;
+  margin: .2em 0.5em 0.2em 0.5em;
+  background: #ddd6e8;
+  font-size: 25px;  
+}
+h2 {
+  font-size: 30px;
+}
+h1 {
+  font-size: 40px;
+}
+h1,h2,h3,h4,ul,p {
+  font-family: 'Satisfy', cursive;
+} 
+
 

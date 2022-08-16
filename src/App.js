@@ -10,19 +10,24 @@ function App() {
 
   const [mySearch, setMySearch] = useState('');
   const [myRecipes, setMyRecipes] = useState([]);
+  const [wordSubmitted, setWordSubmitted] = useState('strawberries');
 
   useEffect(() => {
     async function fetchData() {
-    const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=${MY_ID}&app_key=${MY_KEY}`);
+    const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${wordSubmitted}&app_id=${MY_ID}&app_key=${MY_KEY}`);
     const data = await response.json();
-    console.log(data.hits);
     setMyRecipes(data.hits);
     }
     fetchData();
-}, []);
+}, [wordSubmitted]);
 
   const myRecipeSearch = (e) => {
     setMySearch(e.target.value)
+  }
+
+  const finalSearch = (e) => {
+    e.preventDefault();
+    setWordSubmitted(mySearch)
   }
 
   return (
@@ -33,18 +38,23 @@ function App() {
         </video>
         <h1>Find a Recipe</h1>
       </div>
-      <div className="container">
-        <form>
-          <input className='search' placeholder='Search ...' onChange={myRecipeSearch} value={mySearch}>
 
+      <div className="container">
+        <form onSubmit={finalSearch}>
+          <input className='search' placeholder='Search ...' onChange={myRecipeSearch} value={mySearch}>
           </input>
         </form>
+        
         <button>
           <img src="https://img.icons8.com/emoji/48/cooking-pot-emoji.png" className='icons' alt="pot"/>
         </button>    
       </div>
-      {myRecipes.map(element => (
-        <MyRecipesComponent label={element.recipe.label} image={element.recipe.image} calories={element.recipe.calories}/>
+      {myRecipes.map((element, index) => (
+        <MyRecipesComponent key={index}
+        label={element.recipe.label} 
+        image={element.recipe.image} 
+        calories={element.recipe.calories} 
+        ingredients={element.recipe.ingredientLines}/>
       ))}
 
     </div>
