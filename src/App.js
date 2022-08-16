@@ -1,6 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import video from './food.mp4';
+import MyRecipesComponent from './MyRecipesComponent';
 
 
 function App() {
@@ -14,8 +15,9 @@ function App() {
     async function fetchData() {
     const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=${MY_ID}&app_key=${MY_KEY}`);
     const data = await response.json();
-    console.log(data);
-  }
+    console.log(data.hits);
+    setMyRecipes(data.hits);
+    }
     fetchData();
 }, []);
 
@@ -39,9 +41,12 @@ function App() {
         </form>
         <button>
           <img src="https://img.icons8.com/emoji/48/cooking-pot-emoji.png" className='icons' alt="pot"/>
-        </button>
-    
+        </button>    
       </div>
+      {myRecipes.map(element => (
+        <MyRecipesComponent/>
+      ))}
+
     </div>
   );
 }
