@@ -1,7 +1,9 @@
-function MyRecipesComponent() {
+function MyRecipesComponent({label, image, calories}) {
 	return(
 		<div>
-			<h2>Test</h2>
+			<h2>{label}</h2>
+			<img src={image} alt="dishes"/>
+			<h4>{calories} calories</h4>
 		</div>
 	)
 }
